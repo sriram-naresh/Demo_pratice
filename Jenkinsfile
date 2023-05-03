@@ -8,7 +8,7 @@ pipeline {
     }
     stage('Build Docker image') {
       steps {
-        sh 'sudo docker build -t my-hello-world-app .'
+        sh 'docker build -t my-hello-world-app .'
       }
     }
   }
