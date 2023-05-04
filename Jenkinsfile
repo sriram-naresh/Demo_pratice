@@ -20,8 +20,9 @@ pipeline {
     stage('Push to ECR') {
       steps {
         script {
-              docker.withRegistry("https://${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com", 'ecr') {
-              docker.image("${ECR_REPO_URL}:${IMAGE_VERSION}").push()
+            docker.withRegistry("https://${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com", 'ecr') {
+            docker.image("${ECR_REPO_URL}:${IMAGE_VERSION}").push()
+            }
         }
       }
     }
