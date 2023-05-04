@@ -22,7 +22,7 @@ pipeline {
     stage('Push to ECR') {
       steps {
         script {
-          sh '$(aws ecr get-login --region us-east-1 --no-include-email)'
+          sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 320565985336.dkr.ecr.us-east-1.amazonaws.com'
           sh 'sh 'docker tag hello-world-app 320565985336.dkr.ecr.us-east-1.amazonaws.com:latest''
           sh 'docker push docker push 320565985336.dkr.ecr.us-east-1.amazonaws.com/hello-world-app:latest:latest'
         }
