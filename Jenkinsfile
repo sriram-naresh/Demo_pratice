@@ -28,7 +28,7 @@ pipeline {
         }
       }
     }
-    stage('Push to ECR') {
+    stage('Docker_run_stage') {
       steps {
         script {
           sh 'docker run -d -p 8081:80 320565985336.dkr.ecr.us-east-1.amazonaws.com/hello-world-app:latest'
