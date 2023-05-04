@@ -14,7 +14,9 @@ pipeline {
     }
     stage('Build Docker image') {
       steps {
-        docker.build("${ECR_REPO_URL}:${IMAGE_VERSION}")
+        script{
+          docker.build("${ECR_REPO_URL}:${IMAGE_VERSION}")
+        }
       }
     }
     stage('Push to ECR') {
