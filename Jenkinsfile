@@ -15,16 +15,16 @@ pipeline {
     stage('Build Docker image') {
       steps {
         script{
-          docker.build("${ECR_REPO_URL}:${IMAGE_VERSION}")
+           sh 'docker build -t hello-world-app .'
         }
       }
     }
     stage('Push to ECR') {
       steps {
         script {
-            docker.withRegistry("https://${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com", 'ecr') {
-            docker.image("${ECR_REPO_URL}:${IMAGE_VERSION}").push()
-            }
+          sh '$(aws ecr get-login --region us-east-1 --no-include-email)'
+          sh 'sh 'docker tag hello-world-app 320565985336.dkr.ecr.us-east-1.amazonaws.com:latest''
+          sh 'docker push docker push 320565985336.dkr.ecr.us-east-1.amazonaws.com/hello-world-app:latest:latest'
         }
       }
     }
